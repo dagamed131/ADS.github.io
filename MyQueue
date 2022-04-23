@@ -1,0 +1,15 @@
+public class MyQueue {
+    MyLinkedList<T> list = new MyLinkedList<T>();
+
+    public T peek() {
+        return get(0);
+    }
+    public T enqueue(T newitem) {
+        addBack(newitem);
+        return newitem;
+    }
+    public T dequeue() {
+        T removing item = peek();
+        remove Front();
+        return removing item;
+}
