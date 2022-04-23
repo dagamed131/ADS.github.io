@@ -1,0 +1,15 @@
+public class MyStack<T extends Comparable<T>> {
+    MyLinkedList<T> list = new MyLinkedList<T>();
+
+    public T push(T newItem){
+        add Front(new Item);
+        return newItem;
+}
+    public T peek(){
+        return get(0);
+    }
+    public T pop() {
+        T removing Item = peek();
+        remove Front();
+        return removing Item;
+}
