@@ -1,0 +1,172 @@
+class BST_class { 
+    class Node { 
+        int key; 
+        Node left, right; 
+   
+        public Node(int data){ 
+            key = data; 
+            left = right = null; 
+        } 
+    } 
+    Node rt; 
+    
+    BST_class(){ 
+        rt = null; 
+    } 
+    
+    void delKey(int key) { 
+        rt = delrec(rt, key); 
+    } 
+   
+    Node delrec(Node rt, int key)  { 
+        if (rt == null)  return rt; 
+   
+        if (key < rt.key)
+            rt.left = delrec(rt.left, key); 
+        else if (key > rt.key)
+            rt.right = delrec(rt.right, key); 
+        else  { 
+            if (rt.left == null) 
+           
+            else if (rt.right == null) 
+                return rt.left; 
+            rt.key = minval(rt.right); 
+            rt.right = delrec(rt.right, rt.key); 
+        } 
+        return rt; 
+    } 
+   
+    int minval(Node rt)  { 
+        int minval = rt.key; 
+        while (rt.left != null)  { 
+            minval = rt.left.key; 
+            rt = rt.left; 
+        } 
+        return minval; 
+    } 
+   
+    void inst(int key)  { 
+        rt = instrec(rt, key); 
+    } 
+   
+    Node instrec(Node rt, int key) { 
+        if (rt == null) { 
+            rt = new Node(key); 
+            return rt; 
+        } 
+        if (key < rt.key)
+            rt.left = instrec(rt.left, key); 
+        else if (key > rt.key)
+            rt.right = instrec(rt.right, key); 
+        return rt; 
+    } 
+
+    void inordrec() { 
+        inordrec(rt); 
+    } 
+    
+    void inordrec(Node rt) { 
+        if (rt != null) { 
+            inordrec(rt.left); 
+            System.out.print(rt.key + " "); 
+            inordrec(rt.right); 
+        } 
+    } 
+     
+    boolean search(int key)  { 
+        rt = searchrec(rt, key); 
+        if (rt!= null)
+            return true;
+        else
+            return false;
+    } 
+   
+    Node searchrec(Node rt, int key)  { 
+        if (rt==null || rt.key==key) 
+            return rt; 
+        if (rt.key > key) 
+            return searchrec(rt.left, key); 
+        return searchrec(rt.right, key); 
+    } 
+}
+
+    private V search(Node rt, K key){
+        if(rt == null) {
+            return null;
+        }
+
+        if(rt.key.equals(key)){
+            return rt.value;
+        }
+
+        if((key).compareTo(rt.key) > 0) {
+            return search(rt.right, key);
+        }
+
+        return search(rt.left, key);
+    }
+
+    private Node insertKey(Node rt, Node temp){
+        if(rt == null) {
+            rt = new Node(temp.key, temp.value);
+            return rt;
+        }
+
+        if(rt.key.equals(temp.key)){
+            rt.value = temp.value;
+            return rt;
+        }
+
+        if((temp.key).compareTo(rt.key) > 0) {
+            rt.right = instKey(rt.right, temp);
+        } else {
+            rt.left = instKey(rt.left, temp);
+        }
+
+        return rt;
+    }
+
+    private void iteratleft(Node rt){
+        if (rt != null) {
+            iteratleft(rt.left);
+            System.out.print(rt.key + " ");
+            iteratleft(rt.right);
+        }
+    }
+
+    private Node delKey(Node rt, K key){
+        if(rt == null) {
+            return rt;
+        }
+
+        if((key).compareTo(rt.key) > 0) {
+            rt.right = delKey(rt.right, key);
+        } else {
+            rt.left = delKey(rt.left, key);
+        }
+
+        if(rt.key.equals(key)){
+            if(rt.left == null){
+                return rt.right;
+            }
+            if(rt.right == null){
+                return rt.left;
+            }
+            rt = minvalr(rt.right);
+
+            rt.right = delKey(rt.right, rt.key);
+        }
+
+
+        return rt;
+    }
+
+    private Node minvalr(Node rt){
+        Node minval = rt;
+        while(rt != null){
+            minval = rt;
+            rt = rt.left;
+        }
+        return minval;
+    }
+}
